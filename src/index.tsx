@@ -1,10 +1,11 @@
+import { Provider } from 'mobx-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
 import App from './App';
+import './index.css';
 import * as serviceWorker from './serviceWorker';
-import {Provider} from 'mobx-react';
-import { stores } from './stores';
+import { stores } from './stores/rootStore';
 
 ReactDOM.render(
 <Provider {...stores}>

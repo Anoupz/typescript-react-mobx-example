@@ -1,15 +1,16 @@
+import { inject, observer } from 'mobx-react';
 import React, { Component } from 'react';
+
 import './App.css';
-import { observer, inject } from 'mobx-react';
 import { IMobxStore } from './stores/mobxStore';
 
-interface AppProps {
+interface IProps {
   mobxStore?: IMobxStore
 }
 
 @inject('mobxStore')
 @observer
-class App extends Component<AppProps> {
+class App extends Component<IProps> {
   render() {
     const { greeting } = this.props.mobxStore!;
 
@@ -25,9 +26,8 @@ class App extends Component<AppProps> {
     );
   }
 
-  private clickHandler = (e: React.SyntheticEvent<HTMLButtonElement>) => {
-    const { setName } = this.props.mobxStore!;
-    setName(e.currentTarget.value);
+  clickHandler = (e: React.SyntheticEvent<HTMLButtonElement>) => {
+    this.props.mobxStore!.setName(e.currentTarget.value);
   }
 
 }
