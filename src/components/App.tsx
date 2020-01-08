@@ -1,11 +1,11 @@
 import { inject, observer } from 'mobx-react';
 import React, { Component } from 'react';
 
-import './App.css';
-import { IMobxStore } from './stores/mobxStore';
+import { IMobxStore } from '../stores/mobxStore';
+import { StyledAppLayout } from './App.styles';
 
 interface IProps {
-  mobxStore?: IMobxStore
+  mobxStore?: IMobxStore;
 }
 
 @inject('mobxStore')
@@ -15,21 +15,23 @@ class App extends Component<IProps> {
     const { greeting } = this.props.mobxStore!;
 
     return (
-      <div className="App">
+      <StyledAppLayout>
         <header className="App-header">
           {greeting}
-          <button onClick={this.clickHandler} value="Bob">Change Greeting</button>
-          <button onClick={this.clickHandler} value="World">Reset</button>
+          <button onClick={this.clickHandler} value="Bob">
+            Change Greeting
+          </button>
+          <button onClick={this.clickHandler} value="World">
+            Reset
+          </button>
         </header>
-
-      </div>
+      </StyledAppLayout>
     );
   }
 
   clickHandler = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     this.props.mobxStore!.setName(e.currentTarget.value);
-  }
-
+  };
 }
 
 export default App;
